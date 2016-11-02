@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">IP CHECKER</a>
+    </div>
+    <div class="container">
+      <div class="header">
+        <h1 class="text-muted">Welcome to ipchecker</h1>
+      </div>
+      <hr/>
+
+      <nav class="clear"> <!-- The nav link semantically marks your main site navigation -->
+        <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a href="#">Articles</a></li>
+      <li class="active"><a href="#">Contact</a></li>
+      <li class="active"><a href="#">Links</a></li>
+    </ul>
+        <br>
+        <br>
+      <div>
+
+      <ul class="list-group">
+        <li class="list-group-item">Your IP address is : <strong>{{user_ip}}</strong></li>
+        <li class="list-group-item">Country code : <strong>{{country_code}}</strong> </li>
+        <li class="list-group-item">Country Name : <strong>{{country_name}}</strong></li>
+        <!--<li>Region Name: <strong>{{region_name}}</strong></li>-->
+        <li class="list-group-item">Area Code : <strong>{{area_code}}</strong></li>
+        <li class="list-group-item">City Name : <strong>{{city}}</strong></li>
+        <li class="list-group-item">Postal Code : <strong>{{postal_code}}</strong></li>
+        <li class="list-group-item">Latitude : <strong>{{latitude}}</strong></li>
+        <li class="list-group-item">Longitude : <strong>{{longitude}}</strong></li>
+      </ul>
+      
+      </div>
+      <br>
+      <div>
+        <fieldset>
+        {% with %}
+        {% set location=(latitude,longitude) %}
+        {{googlemap("mymap", location.0, location.1, markers=[(location.0, location.1 )])}}
+        {% endwith %}
+        </fieldset>
+      </div>
+  </ul>
+
+  <!--  <div class="header">
+        <h3 class="text-muted">Code to retrieve the IP</h3>
+      </div>
+      <hr/>
+<pre>
+from flask import Flask, render_template, request
+
+# Initialize the Flask application
+app = Flask(__name__)
+
+# Default route, print user's IP
+@app.route('/')
+def index():
+  ip = request.remote_addr
+  return render_template('index.html', user_ip=ip)
+</pre>-->
+      </div>
+    </div>
+  </body>
+</html>
